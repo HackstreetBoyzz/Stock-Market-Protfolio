@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock News | Nova Capital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00574d;
+            --primary-light: #00776b;
+            --accent: #ffb347;
+            --light: #f5f7f8;
+            --dark: #1a2a2f;
+            --gray: #95a5a6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            color: var(--primary);
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        h1 {
+            margin-top: 100px;
+            color: var(--primary);
+            font-size: 32px;
+            font-weight: 600;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .news-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .news-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary);
+        }
+
+        .news-item h2 {
+            color: var(--primary);
+            font-size: 22px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .news-item .date {
+            font-size: 13px;
+            color: var(--gray);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .news-item .summary {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 15px;
+            max-height: 60px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .news-item.expanded .summary {
+            max-height: none;
+        }
+
+        .category-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: rgba(0, 87, 77, 0.1);
+            color: var(--primary);
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 8px;
+            margin-bottom: 10px;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--primary-light);
+        }
+
+        .read-more i {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .news-item.expanded .read-more i {
+            transform: rotate(180deg);
+        }
+
+        .full-content {
+            color: #444;
+            font-size: 15px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .news-item.expanded .full-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">NOVA CAPITAL</div>
+        <div class="nav-links">
+            <a href="dash1.php">Dashboard</a>
+            <a href="main.html">Buy/Sell</a>
+            <a href="stock-history.php">History</a>
+        </div>
+    </nav>
+
+    <h1>Stock News</h1>
+    <div class="news-container">
+        <div class="news-item">
+            <span class="category-tag">Market Update</span>
+            <h2>Market Update: Stocks Rally</h2>
+            <p class="date">Published on: October 1, 2023</p>
+            <p class="summary">The stock market experienced a significant rally today, with major indices climbing as investors reacted positively to recent economic data.</p>
+            <div class="full-content">
+                Major stock indices like the S&P 500 and Nasdaq saw gains exceeding 2% following the release of strong employment numbers and consumer confidence data. Tech giants led the charge, with companies like Apple and Microsoft posting significant gains. Analysts attribute this rally to renewed optimism about economic recovery and corporate earnings.
+            </div>
+            <a href="#" class="read-more" onclick="toggleContent(this)"><span>Read more</span> <i class="fas fa-chevron-down"></i></a>
+        </div>
+
+        <div class="news-item">
+            <span class="category-tag">Tech</span>
+            <h2>Tech Stocks Lead the Way</h2>
+            <p class="date">Published on: September 30, 2023</p>
+            <p class="summary">Technology stocks have been leading the market gains, with several companies reporting better-than-expected earnings.</p>
+            <div class="full-content">
+                The tech sector continues to outperform, with quarterly earnings from major players like Amazon and Google exceeding analyst expectations. This has fueled investor confidence in the sector's growth potential, particularly in cloud computing and AI technologies. Smaller tech firms also saw significant upticks in their stock prices.
+            </div>
+            <a href="#" class="read-more" onclick="toggleContent(this)"><span>Read more</span> <i class="fas fa-chevron-down"></i></a>
+        </div>
+
+        <div class="news-item">
+            <span class="category-tag">Strategy</span>
+            <h2>Investment Strategies for 2024</h2>
+            <p class="date">Published on: September 29, 2023</p>
+            <p class="summary">Experts share their insights on the best investment strategies to adopt as we approach the new year.</p>
+            <div class="full-content">
+                Financial advisors recommend diversification across emerging markets, sustainable energy, and defensive stocks. Key strategies include focusing on value stocks that have been undervalued and increasing exposure to international markets to hedge against domestic volatility. Long-term investors are also advised to consider dividend-paying stocks.
+            </div>
+            <a href="#" class="read-more" onclick="toggleContent(this)"><span>Read more</span> <i class="fas fa-chevron-down"></i></a>
+        </div>
+
+        <div class="news-item">
+            <span class="category-tag">Finance</span>
+            <h2>Federal Reserve Signals Potential Rate Cut</h2>
+            <p class="date">Published on: September 28, 2023</p>
+            <p class="summary">The Federal Reserve has signaled it may consider cutting interest rates in the coming months.</p>
+            <div class="full-content">
+                Fed Chairman's recent statements suggest a potential 25-basis-point rate cut if inflation continues to moderate and economic growth slows. This comes after months of maintaining higher rates to combat inflation. Markets responded positively, with bond yields dropping and stock prices rising in anticipation of cheaper borrowing costs.
+            </div>
+            <a href="#" class="read-more" onclick="toggleContent(this)"><span>Read more</span> <i class="fas fa-chevron-down"></i></a>
+        </div>
+
+        <div class="news-item">
+            <span class="category-tag">Crypto</span>
+            <h2>Cryptocurrency Market Sees Renewed Interest</h2>
+            <p class="date">Published on: September 27, 2023</p>
+            <p class="summary">Bitcoin and other cryptocurrencies have experienced a surge in value and trading volume.</p>
+            <div class="full-content">
+                Bitcoin crossed the $30,000 mark this week, driven by institutional buying and positive regulatory developments. Ethereum and other altcoins followed suit, with trading volumes reaching their highest levels in months. Analysts suggest this could mark the beginning of a new bull run in the crypto market.
+            </div>
+            <a href="#" class="read-more" onclick="toggleContent(this)"><span>Read more</span> <i class="fas fa-chevron-down"></i></a>
+        </div>
+
+        <div class="news-item">
+            <span class="category-tag">Global</span>
+            <h2>International Markets React to Trade Agreements</h2>
+            <p class="date">Published on: September 26, 2023</p>
+            <p class="summary">Asian and European markets have shown positive movement following new trade agreements.</p>
+            <div class="full-content">
+                Recent trade pacts between the US, EU, and Asian countries have reduced tariffs and opened new markets, boosting investor confidence. The Nikkei and FTSE indices rose by over 1.5%, with export-oriented companies seeing the most significant gains. These agreements are expected to enhance global economic growth.
+            </div>
+            <a href="#" class="read-more" onclick="toggleContent(this)"><span>Read more</span> <i class="fas fa-chevron-down"></i></a>
+        </div>
+
+        <div class="news-item">
+            <span class="category-tag">Energy</span>
+            <h2>Renewable Energy Stocks Outperform Traditional Energy</h2>
+            <p class="date">Published on: September 25, 2023</p>
+            <p class="summary">Renewable energy companies have consistently outperformed traditional oil and gas stocks.</p>
+            <div class="full-content">
+                With increasing global focus on sustainability, companies like Vestas and First Solar have seen their stock prices soar by over 20% this year. In contrast, traditional energy firms struggle with volatile oil prices and regulatory pressures. Government subsidies for clean energy continue to drive this trend.
+            </div>
+            <a href="#" class="read-more" onclick="toggleContent(this)"><span>Read more</span> <i class="fas fa-chevron-down"></i></a>
+        </div>
+
+        <div class="news-item">
+            <span class="category-tag">Analysis</span>
+            <h2>Q3 Earnings Report: What to Expect</h2>
+            <p class="date">Published on: September 24, 2023</p>
+            <p class="summary">Analysts provide insights on sectors expected to show strong performance in Q3.</p>
+            <div class="full-content">
+                Technology and healthcare sectors are anticipated to lead Q3 earnings, driven by innovation and demand. Consumer discretionary stocks may face challenges due to inflation pressures, while industrial sectors could see mixed results. Detailed forecasts point to a generally positive quarter for most major companies.
+            </div>
+            <a href="#" class="read-more" onclick="toggleContent(this)"><span>Read more</span> <i class="fas fa-chevron-down"></i></a>
+        </div>
+    </div>
+
+    <script>
+        function toggleContent(element) {
+            const newsItem = element.closest('.news-item');
+            const isExpanded = newsItem.classList.contains('expanded');
+            
+            if (isExpanded) {
+                newsItem.classList.remove('expanded');
+                element.querySelector('span').textContent = 'Read more';
+            } else {
+                newsItem.classList.add('expanded');
+                element.querySelector('span').textContent = 'Read less';
+            }
+            
+            event.preventDefault();
+        }
+    </script>
+</body>
+</html>
